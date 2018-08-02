@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Projects</title>
+
+    <!-- Bootstrap -->
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fontawesom -->
+    <link href="../../bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
+    <!-- Preload -->
+    <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style media="screen">
+      body{
+        background: rgb(241, 241, 241);
+      }
+
+      .navbar-light .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 1);
+      }
+
+      .navbar-light .navbar-nav .nav-link:hover {
+            color: rgba(255, 199, 0, 1);
+      }
+
+      .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+          color: rgba(255, 255, 255, 1);
+          font-weight: 500;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="header" style="background: #00b187; position: fixed; width: 100%; padding-bottom: 50px;">
+      <div class="container-fluid pt-15 pb-15">
+        <div class="row">
+          <div class="col text-left pl-20 pt-10">
+            <i class="fas fa-bars fa-2x text-light"></i>
+          </div>
+          <div class="col text-center">
+            <div style="font-size: 1em;">
+              <h2 class="mb-0"><img src="../../img/eu-sis-logo.png" alt="" width="50" class="mb-30"></h2>
+            </div>
+          </div>
+          <div class="col text-right pr-20 pt-10">
+            <i class="fas fa-search fa-2x text-light"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-panel" style=" padding-bottom: 30px; min-height: 200px; padding-top: 70px; background: rgb(80, 80, 80)">
+      <div class="container-fluid">
+        <div class="row pt-20">
+          <div class="col text-right" id="col-ref-1" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0" id="btn-1">
+              <i class="fas fa-plus fa-3x"></i><div class="pt-10">Add task</div>
+            </button>
+          </div>
+          <div class="col text-center" style="padding: 0;">
+            <button class="btn btn-secondary pt-10"  style="padding: 0; margin: 0" id="btn-2" onclick="window.location = 'schedule.html'">
+              <i class="fas fa-calendar fa-3x"></i><div class="pt-10">Schedule</div>
+            </button>
+          </div>
+          <div class="col text-left" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0"  id="btn-3" data-toggle="modal" data-target=".create-task">
+              <i class="fas fa-wrench fa-3x"></i><div class="pt-10">Task group</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="row pt-10">
+          <div class="col text-right" id="col-ref-1" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0" id="btn-1" onclick="window.location = 'tasklist.html'">
+              <i class="fas fa-list-ul fa-3x"></i><div class="pt-10">Task list</div>
+            </button>
+          </div>
+          <div class="col text-center" style="padding: 0;">
+            <button class="btn btn-secondary pt-10"  style="padding: 0; margin: 0" id="btn-2" onclick="window.location = 'report.html'">
+              <i class="fas fa-chart-line fa-3x"></i><div class="pt-10">Reports</div>
+            </button>
+          </div>
+          <div class="col text-left" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0"  id="btn-3">
+              <i class="fas fa-bell fa-3x"></i><div class="pt-10">Notify</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="row pt-10">
+          <div class="col text-right" id="col-ref-1" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0" id="btn-1" onclick="window.location = 'setting.html'">
+              <i class="fas fa-cogs fa-3x"></i><div class="pt-10">Settings</div>
+            </button>
+          </div>
+          <div class="col text-center" style="padding: 0;">
+            <button class="btn btn-secondary pt-10"  style="padding: 0; margin: 0" id="btn-2" onclick="window.location = 'profile.html'">
+              <i class="fas fa-user fa-3x"></i><div class="pt-10">Profile</div>
+            </button>
+          </div>
+          <div class="col text-left" style="padding: 0;">
+            <button class="btn btn-secondary pt-10" style="padding: 0; margin: 0"  id="btn-3" onclick="authen.signout()">
+              <i class="fas fa-sign-out-alt fa-3x"></i><div class="pt-10">Log out</div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9 mt-30">
+            <div class="row">
+              <div class="col-sm-12 font-bold">
+                Task list
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 pt-10">
+                <table class="table fz09" style="border_: solid; border-width_: 1px; ">
+                  <thead style="background: #fff; border-radius:100px;" class="txt-gray">
+                    <tr>
+                      <th style="border-top: 0px;">Task</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody style="background: #fff;" class="table_response txt-gray">
+                    <tr>
+                      <td colspan="2">No project found</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade create-task" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg_" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background: rgb(0, 156, 244);">
+            <h5 class="modal-title" id="exampleModalLabel">Create task</h5>
+            <button type="button" class="close txt-light btnCloseModal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body fz09" style="background: rgb(250, 250, 250);">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 pt-20">
+                <form onsubmit="return false;">
+                  <div class="form-group">
+                    <label for="" class="font-bold">Title : <span class="text-danger">**</span></label>
+                    <input type="text" id="txtTaskname" class="form-control" placeholder="Enter task name ...">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-bold">Schedule : <span class="text-danger">**</span> </label>
+                    <select class="form-control" id="txtTasktype" name="">
+                      <option value="1">Routine work</option>
+                      <option value="2">One-day pass</option>
+                      <option value="3">Daily repeat</option>
+                      <option value="4">Weekly repeat</option>
+                      <option value="5">Monthly repeat</option>
+                      <option value="6">Yearly repeat</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group tasktype dn" id="">
+                    <label for="" class="font-bold">Date : </label>
+                    <input type="date" class="form-control" placeholder="Choose date ...">
+                  </div>
+
+                  <div class="form-group tasktype dn" id="dailyInput">
+                    <label for="" class="font-bold">Repeat every day : </label>
+                    <select class="form-control" name="">
+                      <option value="sun">Sunday</option>
+                      <option value="mon">Monday</option>
+                      <option value="tue">Tuesday</option>
+                      <option value="wed">Wednesday</option>
+                      <option value="thu">Thursday</option>
+                      <option value="fri">Friday</option>
+                      <option value="sat">Saturday</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group tasktype dn" id="monthlyInput">
+                    <label for="" class="font-bold">Month : <span class="text-danger">**</span></label>
+                    <select class="form-control" name="">
+                      <option value="">-- Choose month --</option>
+                      <option value="sun">January</option>
+                      <option value="mon">February</option>
+                      <option value="tue">March</option>
+                      <option value="wed">April</option>
+                      <option value="thu">May</option>
+                      <option value="fri">June</option>
+                      <option value="sat">July</option>
+                      <option value="sat">August</option>
+                      <option value="sat">September</option>
+                      <option value="sat">October</option>
+                      <option value="sat">November</option>
+                      <option value="sat">December</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="font-bold">Detail : </label>
+                    <textarea name="name" class="form-control" rows="4" cols="80"></textarea>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-block btn-lg" onclick="task.create()">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .modal -->
+
+    <div class="modal fade bd-example-modal-lg-delete-project" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg_" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background: rgb(246, 0, 52);">
+            <h5 class="modal-title" id="exampleModalLabel">Delete project</h5>
+            <button type="button" class="close txt-light btnCloseModal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body fz09" style="background: rgb(250, 250, 250);">
+            <div class="row">
+              <div class="col-xs-2 col-sm-2 col-md-2 text-center pt-10 pb-10 pr-0">
+                <!-- <i class="fas fa-info-circle fa-2x txt-gray"></i> -->
+                <i class="fas fa-exclamation-triangle fa-3x txt-gray"></i>
+              </div>
+              <div class="col-xs-10 col-sm-10 col-md-10">
+                <span class="txt-gray">Selected PROJECT ID : <span id="projectID"></span></span><br>
+                <span class="txt-gray">You are about to permanently delete this project and any associated items.</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="project.confirm_delete_project()"><i class="fas fa-trash"></i> Delete</button>
+            <button type="button" class="btn btn-light"  data-dismiss="modal" aria-label="Close"> Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .modal -->
+
+    <div class="modal fade bd-example-modal-lg-project-success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background: #fff;">
+            <h5 class="modal-title txt-dark" id="exampleModalLabel">Create project success</h5>
+            <button type="button" class="close txt-light btnCloseModal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body fz09">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <i class="far fa-check-circle fa-5x text-success"></i>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-block"  data-dismiss="modal" aria-label="Close"> Close this window</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .modal -->
+
+    <div class="modal fade bd-example-modal-lg-project-fail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background: #ee0c50;">
+            <h5 class="modal-title txt-light" id="exampleModalLabel">Create project fail</h5>
+            <button type="button" class="close txt-light btnCloseModal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body fz09">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <i class="far fa-times-circle fa-5x text-danger"></i>
+                <div class="text-center" id="projectFailMsg">Can not create project</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-block"  data-dismiss="modal" aria-label="Close"> Close this window</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .modal -->
+
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/tooltip.js/dist/umd/tooltip.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/utils-js/dist/utils.min.js"></script>
+
+
+    <script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../../assets/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/js/function.js"></script>
+    <script type="text/javascript" src="../../node_modules/preload.js/dist/js/preload.js"></script>
+    <script type="text/javascript" src="../../assets/js/authen.js"></script>
+    <script type="text/javascript" src="../../assets/js/common.js"></script>
+    <script type="text/javascript" src="../../assets/js/task.js"></script>
+    <!-- <script type="text/javascript" src="../../assets/dist/js/project.js"></script> -->
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // project.list_project()
+        console.log($('#col-ref-1').width() - 10);
+        $('#btn-1, #btn-2, #btn-3').height($('#col-ref-1').width() - 20)
+        $('#btn-1, #btn-2, #btn-3').width($('#col-ref-1').width() - 20)
+      })
+      $(function(){
+
+      })
+    </script>
+  </body>
+</html>
